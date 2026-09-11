@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.header {
+  height: 70px;
+  padding: 0 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo,
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.logo .material-icons {
+  font-size: 27px;
+}
+
+.header-user {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.material-icons {
+  font-size: 22px;
+}

@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Membre {
+  id               Int           @id @default(autoincrement())
+  nom              String        @db.VarChar(100)
+  telephone        String        @unique @db.VarChar(150)
+  date_inscription DateTime      @default(dbgenerated("CURRENT_DATE")) @db.Date
+  statut_membre    String        @default("Actif") @db.VarChar(20)
+  mail             String        @unique @db.VarChar(150)
+  abonnemment      abonnemment[]
+
+  @@map("membre")
+}
+
+model abonnement {
+  id                Int      @id @default(autoincrement())
+  type              String   @db.VarChar(30)
+  date_debut        DateTime @unique @db.Date
+  date_fin          DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+  prix              Decimal  @db.Decimal(10, 2)
+  statut_abonnement String   @default("Actif") @db.VarChar(20)
+  membre_id         Int
+  membre            Membre   @relation(fields: [membre_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_abonnement_membre")
+}

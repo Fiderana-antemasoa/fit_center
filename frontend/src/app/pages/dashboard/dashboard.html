@@ -1,0 +1,192 @@
+<section class="dashboard">
+  <div class="page-header">
+    <div>
+      <p class="eyebrow">TABLEAU DE BORD</p>
+      <h1>Bonjour, Administrateur</h1>
+      <p class="subtitle">Voici un aperçu de l'activité de votre salle.</p>
+    </div>
+
+    <div class="date">
+      <span class="material-icons">calendar_today</span>
+      <span>{{ getToday() }}</span>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <div class="dashboard-error">
+      <span class="material-icons">error_outline</span>
+      <span>{{ errorMessage }}</span>
+
+      <button type="button" (click)="loadDashboard()">
+        <span class="material-icons">refresh</span>
+        Réessayer
+      </button>
+    </div>
+  }
+
+  <div class="stats">
+    <article class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">groups</span>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-label">Membres</span>
+
+        <strong>
+          {{ totalMembres }}
+        </strong>
+
+        <span class="stat-info">
+          Total des membres
+        </span>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">person</span>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-label">Membres actifs</span>
+
+        <strong>
+          {{ membresActifs }}
+        </strong>
+
+        <span class="stat-info">
+          Actuellement actifs
+        </span>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">card_membership</span>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-label">Abonnements</span>
+
+        <strong>
+          {{ abonnementsActifs }}
+        </strong>
+
+        <span class="stat-info">
+          Abonnements actifs
+        </span>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-icon">
+        <span class="material-icons">payments</span>
+      </div>
+
+      <div class="stat-content">
+        <span class="stat-label">Revenus</span>
+
+        <strong>
+          {{ revenusMois | number }} Ar
+        </strong>
+
+        <span class="stat-info">
+          Ce mois-ci
+        </span>
+      </div>
+    </article>
+  </div>
+
+  <div class="dashboard-grid">
+    <article class="panel">
+      <div class="panel-header">
+        <div>
+          <h2>Activité récente</h2>
+          <p>Les derniers abonnements enregistrés.</p>
+        </div>
+
+        <span class="material-icons">history</span>
+      </div>
+
+      @if (getRecentAbonnements().length > 0) {
+        <div class="recent-list">
+          @for (
+            abonnement of getRecentAbonnements();
+            track abonnement.id
+          ) {
+            <div class="recent-item">
+              <div class="recent-icon">
+                <span class="material-icons">card_membership</span>
+              </div>
+
+              <div class="recent-content">
+                <strong>
+                  {{ getMembreNom(abonnement.membre_id) }}
+                </strong>
+
+                <span>
+                  Abonnement {{ abonnement.type }}
+                </span>
+              </div>
+
+              <div class="recent-date">
+                {{ abonnement.date_debut | date:'dd/MM/yyyy' }}
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">
+            <span class="material-icons">event_note</span>
+          </div>
+
+          <h3>Aucune activité</h3>
+
+          <p>
+            Les activités apparaîtront ici lorsque vous commencerez
+            à utiliser FitCenter.
+          </p>
+        </div>
+      }
+    </article>
+
+    <article class="panel quick-actions">
+      <div class="panel-header">
+        <div>
+          <h2>Actions rapides</h2>
+          <p>Accédez rapidement aux fonctionnalités.</p>
+        </div>
+
+        <span class="material-icons">bolt</span>
+      </div>
+
+      <a routerLink="/membres" class="action">
+        <span class="material-icons">person_add</span>
+
+        <div>
+          <strong>Ajouter un membre</strong>
+          <span>Créer une nouvelle fiche membre</span>
+        </div>
+
+        <span class="material-icons arrow">
+          chevron_right
+        </span>
+      </a>
+
+      <a routerLink="/abonnements" class="action">
+        <span class="material-icons">add_card</span>
+
+        <div>
+          <strong>Créer un abonnement</strong>
+          <span>Enregistrer un nouvel abonnement</span>
+        </div>
+
+        <span class="material-icons arrow">
+          chevron_right
+        </span>
+      </a>
+    </article>
+  </div>
+</section>

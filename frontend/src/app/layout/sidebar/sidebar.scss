@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.sidebar {
+  width: 240px;
+  min-height: calc(100vh - 70px);
+  padding: 24px 16px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navigation a {
+  padding: 12px 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navigation a:hover {
+  background: #f6f7f9;
+  color: #1f2937;
+}
+
+.navigation a.active {
+  background: #f6f7f9;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.material-icons {
+  font-size: 21px;
+}
