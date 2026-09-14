@@ -52,7 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Membre: 'Membre',
-  abonnemment: 'abonnemment'
+  Abonnement: 'Abonnement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -83,7 +83,7 @@ export const MembreScalarFieldEnum = {
 export type MembreScalarFieldEnum = (typeof MembreScalarFieldEnum)[keyof typeof MembreScalarFieldEnum]
 
 
-export const AbonnemmentScalarFieldEnum = {
+export const AbonnementScalarFieldEnum = {
   id: 'id',
   type: 'type',
   date_debut: 'date_debut',
@@ -93,7 +93,7 @@ export const AbonnemmentScalarFieldEnum = {
   membre_id: 'membre_id'
 } as const
 
-export type AbonnemmentScalarFieldEnum = (typeof AbonnemmentScalarFieldEnum)[keyof typeof AbonnemmentScalarFieldEnum]
+export type AbonnementScalarFieldEnum = (typeof AbonnementScalarFieldEnum)[keyof typeof AbonnementScalarFieldEnum]
 
 
 export const SortOrder = {

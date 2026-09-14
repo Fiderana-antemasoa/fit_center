@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: fitcenter-postgres
+    environment:
+      POSTGRES_DB: salle_sport
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: change-moi
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    container_name: fitcenter-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:12345678@postgres:5432/salle_sport
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: fitcenter-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

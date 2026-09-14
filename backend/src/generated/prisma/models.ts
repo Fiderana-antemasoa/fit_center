@@ -9,5 +9,5 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Membre'
-export type * from './models/abonnemment'
+export type * from './models/Abonnement'
 export type * from './commonInputTypes'

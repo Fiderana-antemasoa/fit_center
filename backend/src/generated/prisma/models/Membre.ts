@@ -224,7 +224,7 @@ export type MembreWhereInput = {
   date_inscription?: Prisma.DateTimeFilter<"Membre"> | Date | string
   statut_membre?: Prisma.StringFilter<"Membre"> | string
   mail?: Prisma.StringFilter<"Membre"> | string
-  abonnemment?: Prisma.AbonnemmentListRelationFilter
+  abonnements?: Prisma.AbonnementListRelationFilter
 }
 
 export type MembreOrderByWithRelationInput = {
@@ -234,7 +234,7 @@ export type MembreOrderByWithRelationInput = {
   date_inscription?: Prisma.SortOrder
   statut_membre?: Prisma.SortOrder
   mail?: Prisma.SortOrder
-  abonnemment?: Prisma.abonnemmentOrderByRelationAggregateInput
+  abonnements?: Prisma.AbonnementOrderByRelationAggregateInput
 }
 
 export type MembreWhereUniqueInput = Prisma.AtLeast<{
@@ -247,7 +247,7 @@ export type MembreWhereUniqueInput = Prisma.AtLeast<{
   nom?: Prisma.StringFilter<"Membre"> | string
   date_inscription?: Prisma.DateTimeFilter<"Membre"> | Date | string
   statut_membre?: Prisma.StringFilter<"Membre"> | string
-  abonnemment?: Prisma.AbonnemmentListRelationFilter
+  abonnements?: Prisma.AbonnementListRelationFilter
 }, "id" | "telephone" | "mail">
 
 export type MembreOrderByWithAggregationInput = {
@@ -282,7 +282,7 @@ export type MembreCreateInput = {
   date_inscription?: Date | string
   statut_membre?: string
   mail: string
-  abonnemment?: Prisma.abonnemmentCreateNestedManyWithoutMembreInput
+  abonnements?: Prisma.AbonnementCreateNestedManyWithoutMembreInput
 }
 
 export type MembreUncheckedCreateInput = {
@@ -292,7 +292,7 @@ export type MembreUncheckedCreateInput = {
   date_inscription?: Date | string
   statut_membre?: string
   mail: string
-  abonnemment?: Prisma.abonnemmentUncheckedCreateNestedManyWithoutMembreInput
+  abonnements?: Prisma.AbonnementUncheckedCreateNestedManyWithoutMembreInput
 }
 
 export type MembreUpdateInput = {
@@ -301,7 +301,7 @@ export type MembreUpdateInput = {
   date_inscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statut_membre?: Prisma.StringFieldUpdateOperationsInput | string
   mail?: Prisma.StringFieldUpdateOperationsInput | string
-  abonnemment?: Prisma.abonnemmentUpdateManyWithoutMembreNestedInput
+  abonnements?: Prisma.AbonnementUpdateManyWithoutMembreNestedInput
 }
 
 export type MembreUncheckedUpdateInput = {
@@ -311,7 +311,7 @@ export type MembreUncheckedUpdateInput = {
   date_inscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   statut_membre?: Prisma.StringFieldUpdateOperationsInput | string
   mail?: Prisma.StringFieldUpdateOperationsInput | string
-  abonnemment?: Prisma.abonnemmentUncheckedUpdateManyWithoutMembreNestedInput
+  abonnements?: Prisma.AbonnementUncheckedUpdateManyWithoutMembreNestedInput
 }
 
 export type MembreCreateManyInput = {
@@ -396,21 +396,21 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type MembreCreateNestedOneWithoutAbonnemmentInput = {
-  create?: Prisma.XOR<Prisma.MembreCreateWithoutAbonnemmentInput, Prisma.MembreUncheckedCreateWithoutAbonnemmentInput>
-  connectOrCreate?: Prisma.MembreCreateOrConnectWithoutAbonnemmentInput
+export type MembreCreateNestedOneWithoutAbonnementsInput = {
+  create?: Prisma.XOR<Prisma.MembreCreateWithoutAbonnementsInput, Prisma.MembreUncheckedCreateWithoutAbonnementsInput>
+  connectOrCreate?: Prisma.MembreCreateOrConnectWithoutAbonnementsInput
   connect?: Prisma.MembreWhereUniqueInput
 }
 
-export type MembreUpdateOneRequiredWithoutAbonnemmentNestedInput = {
-  create?: Prisma.XOR<Prisma.MembreCreateWithoutAbonnemmentInput, Prisma.MembreUncheckedCreateWithoutAbonnemmentInput>
-  connectOrCreate?: Prisma.MembreCreateOrConnectWithoutAbonnemmentInput
-  upsert?: Prisma.MembreUpsertWithoutAbonnemmentInput
+export type MembreUpdateOneRequiredWithoutAbonnementsNestedInput = {
+  create?: Prisma.XOR<Prisma.MembreCreateWithoutAbonnementsInput, Prisma.MembreUncheckedCreateWithoutAbonnementsInput>
+  connectOrCreate?: Prisma.MembreCreateOrConnectWithoutAbonnementsInput
+  upsert?: Prisma.MembreUpsertWithoutAbonnementsInput
   connect?: Prisma.MembreWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MembreUpdateToOneWithWhereWithoutAbonnemmentInput, Prisma.MembreUpdateWithoutAbonnemmentInput>, Prisma.MembreUncheckedUpdateWithoutAbonnemmentInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MembreUpdateToOneWithWhereWithoutAbonnementsInput, Prisma.MembreUpdateWithoutAbonnementsInput>, Prisma.MembreUncheckedUpdateWithoutAbonnementsInput>
 }
 
-export type MembreCreateWithoutAbonnemmentInput = {
+export type MembreCreateWithoutAbonnementsInput = {
   nom: string
   telephone: string
   date_inscription?: Date | string
@@ -418,7 +418,7 @@ export type MembreCreateWithoutAbonnemmentInput = {
   mail: string
 }
 
-export type MembreUncheckedCreateWithoutAbonnemmentInput = {
+export type MembreUncheckedCreateWithoutAbonnementsInput = {
   id?: number
   nom: string
   telephone: string
@@ -427,23 +427,23 @@ export type MembreUncheckedCreateWithoutAbonnemmentInput = {
   mail: string
 }
 
-export type MembreCreateOrConnectWithoutAbonnemmentInput = {
+export type MembreCreateOrConnectWithoutAbonnementsInput = {
   where: Prisma.MembreWhereUniqueInput
-  create: Prisma.XOR<Prisma.MembreCreateWithoutAbonnemmentInput, Prisma.MembreUncheckedCreateWithoutAbonnemmentInput>
+  create: Prisma.XOR<Prisma.MembreCreateWithoutAbonnementsInput, Prisma.MembreUncheckedCreateWithoutAbonnementsInput>
 }
 
-export type MembreUpsertWithoutAbonnemmentInput = {
-  update: Prisma.XOR<Prisma.MembreUpdateWithoutAbonnemmentInput, Prisma.MembreUncheckedUpdateWithoutAbonnemmentInput>
-  create: Prisma.XOR<Prisma.MembreCreateWithoutAbonnemmentInput, Prisma.MembreUncheckedCreateWithoutAbonnemmentInput>
+export type MembreUpsertWithoutAbonnementsInput = {
+  update: Prisma.XOR<Prisma.MembreUpdateWithoutAbonnementsInput, Prisma.MembreUncheckedUpdateWithoutAbonnementsInput>
+  create: Prisma.XOR<Prisma.MembreCreateWithoutAbonnementsInput, Prisma.MembreUncheckedCreateWithoutAbonnementsInput>
   where?: Prisma.MembreWhereInput
 }
 
-export type MembreUpdateToOneWithWhereWithoutAbonnemmentInput = {
+export type MembreUpdateToOneWithWhereWithoutAbonnementsInput = {
   where?: Prisma.MembreWhereInput
-  data: Prisma.XOR<Prisma.MembreUpdateWithoutAbonnemmentInput, Prisma.MembreUncheckedUpdateWithoutAbonnemmentInput>
+  data: Prisma.XOR<Prisma.MembreUpdateWithoutAbonnementsInput, Prisma.MembreUncheckedUpdateWithoutAbonnementsInput>
 }
 
-export type MembreUpdateWithoutAbonnemmentInput = {
+export type MembreUpdateWithoutAbonnementsInput = {
   nom?: Prisma.StringFieldUpdateOperationsInput | string
   telephone?: Prisma.StringFieldUpdateOperationsInput | string
   date_inscription?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -451,7 +451,7 @@ export type MembreUpdateWithoutAbonnemmentInput = {
   mail?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type MembreUncheckedUpdateWithoutAbonnemmentInput = {
+export type MembreUncheckedUpdateWithoutAbonnementsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nom?: Prisma.StringFieldUpdateOperationsInput | string
   telephone?: Prisma.StringFieldUpdateOperationsInput | string
@@ -466,11 +466,11 @@ export type MembreUncheckedUpdateWithoutAbonnemmentInput = {
  */
 
 export type MembreCountOutputType = {
-  abonnemment: number
+  abonnements: number
 }
 
 export type MembreCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  abonnemment?: boolean | MembreCountOutputTypeCountAbonnemmentArgs
+  abonnements?: boolean | MembreCountOutputTypeCountAbonnementsArgs
 }
 
 /**
@@ -486,8 +486,8 @@ export type MembreCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * MembreCountOutputType without action
  */
-export type MembreCountOutputTypeCountAbonnemmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.abonnemmentWhereInput
+export type MembreCountOutputTypeCountAbonnementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AbonnementWhereInput
 }
 
 
@@ -498,7 +498,7 @@ export type MembreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   date_inscription?: boolean
   statut_membre?: boolean
   mail?: boolean
-  abonnemment?: boolean | Prisma.Membre$abonnemmentArgs<ExtArgs>
+  abonnements?: boolean | Prisma.Membre$abonnementsArgs<ExtArgs>
   _count?: boolean | Prisma.MembreCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["membre"]>
 
@@ -531,7 +531,7 @@ export type MembreSelectScalar = {
 
 export type MembreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nom" | "telephone" | "date_inscription" | "statut_membre" | "mail", ExtArgs["result"]["membre"]>
 export type MembreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  abonnemment?: boolean | Prisma.Membre$abonnemmentArgs<ExtArgs>
+  abonnements?: boolean | Prisma.Membre$abonnementsArgs<ExtArgs>
   _count?: boolean | Prisma.MembreCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MembreIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -540,7 +540,7 @@ export type MembreIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $MembrePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Membre"
   objects: {
-    abonnemment: Prisma.$abonnemmentPayload<ExtArgs>[]
+    abonnements: Prisma.$AbonnementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -943,7 +943,7 @@ readonly fields: MembreFieldRefs;
  */
 export interface Prisma__MembreClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  abonnemment<T extends Prisma.Membre$abonnemmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membre$abonnemmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$abonnemmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  abonnements<T extends Prisma.Membre$abonnementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Membre$abonnementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AbonnementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1372,27 +1372,27 @@ export type MembreDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Membre.abonnemment
+ * Membre.abonnements
  */
-export type Membre$abonnemmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Membre$abonnementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the abonnemment
+   * Select specific fields to fetch from the Abonnement
    */
-  select?: Prisma.abonnemmentSelect<ExtArgs> | null
+  select?: Prisma.AbonnementSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the abonnemment
+   * Omit specific fields from the Abonnement
    */
-  omit?: Prisma.abonnemmentOmit<ExtArgs> | null
+  omit?: Prisma.AbonnementOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.abonnemmentInclude<ExtArgs> | null
-  where?: Prisma.abonnemmentWhereInput
-  orderBy?: Prisma.abonnemmentOrderByWithRelationInput | Prisma.abonnemmentOrderByWithRelationInput[]
-  cursor?: Prisma.abonnemmentWhereUniqueInput
+  include?: Prisma.AbonnementInclude<ExtArgs> | null
+  where?: Prisma.AbonnementWhereInput
+  orderBy?: Prisma.AbonnementOrderByWithRelationInput | Prisma.AbonnementOrderByWithRelationInput[]
+  cursor?: Prisma.AbonnementWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AbonnemmentScalarFieldEnum | Prisma.AbonnemmentScalarFieldEnum[]
+  distinct?: Prisma.AbonnementScalarFieldEnum | Prisma.AbonnementScalarFieldEnum[]
 }
 
 /**

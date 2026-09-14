@@ -398,7 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Membre: 'Membre',
-  abonnemment: 'abonnemment'
+  Abonnement: 'Abonnement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "membre" | "abonnemment"
+    modelProps: "membre" | "abonnement"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -492,77 +492,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    abonnemment: {
-      payload: Prisma.$abonnemmentPayload<ExtArgs>
-      fields: Prisma.abonnemmentFieldRefs
+    Abonnement: {
+      payload: Prisma.$AbonnementPayload<ExtArgs>
+      fields: Prisma.AbonnementFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.abonnemmentFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload> | null
+          args: Prisma.AbonnementFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.abonnemmentFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         findFirst: {
-          args: Prisma.abonnemmentFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload> | null
+          args: Prisma.AbonnementFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.abonnemmentFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         findMany: {
-          args: Prisma.abonnemmentFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>[]
+          args: Prisma.AbonnementFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>[]
         }
         create: {
-          args: Prisma.abonnemmentCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         createMany: {
-          args: Prisma.abonnemmentCreateManyArgs<ExtArgs>
+          args: Prisma.AbonnementCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.abonnemmentCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>[]
+          args: Prisma.AbonnementCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>[]
         }
         delete: {
-          args: Prisma.abonnemmentDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         update: {
-          args: Prisma.abonnemmentUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         deleteMany: {
-          args: Prisma.abonnemmentDeleteManyArgs<ExtArgs>
+          args: Prisma.AbonnementDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.abonnemmentUpdateManyArgs<ExtArgs>
+          args: Prisma.AbonnementUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.abonnemmentUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>[]
+          args: Prisma.AbonnementUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>[]
         }
         upsert: {
-          args: Prisma.abonnemmentUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$abonnemmentPayload>
+          args: Prisma.AbonnementUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AbonnementPayload>
         }
         aggregate: {
-          args: Prisma.AbonnemmentAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAbonnemment>
+          args: Prisma.AbonnementAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAbonnement>
         }
         groupBy: {
-          args: Prisma.abonnemmentGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AbonnemmentGroupByOutputType>[]
+          args: Prisma.AbonnementGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AbonnementGroupByOutputType>[]
         }
         count: {
-          args: Prisma.abonnemmentCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AbonnemmentCountAggregateOutputType> | number
+          args: Prisma.AbonnementCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AbonnementCountAggregateOutputType> | number
         }
       }
     }
@@ -617,7 +617,7 @@ export const MembreScalarFieldEnum = {
 export type MembreScalarFieldEnum = (typeof MembreScalarFieldEnum)[keyof typeof MembreScalarFieldEnum]
 
 
-export const AbonnemmentScalarFieldEnum = {
+export const AbonnementScalarFieldEnum = {
   id: 'id',
   type: 'type',
   date_debut: 'date_debut',
@@ -627,7 +627,7 @@ export const AbonnemmentScalarFieldEnum = {
   membre_id: 'membre_id'
 } as const
 
-export type AbonnemmentScalarFieldEnum = (typeof AbonnemmentScalarFieldEnum)[keyof typeof AbonnemmentScalarFieldEnum]
+export type AbonnementScalarFieldEnum = (typeof AbonnementScalarFieldEnum)[keyof typeof AbonnementScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -873,7 +873,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   membre?: Prisma.MembreOmit
-  abonnemment?: Prisma.abonnemmentOmit
+  abonnement?: Prisma.AbonnementOmit
 }
 
 /* Types for Logging */

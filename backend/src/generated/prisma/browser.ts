@@ -23,7 +23,7 @@ export * from './enums';
  */
 export type Membre = Prisma.MembreModel
 /**
- * Model abonnemment
+ * Model Abonnement
  * 
  */
-export type abonnemment = Prisma.abonnemmentModel
+export type Abonnement = Prisma.AbonnementModel

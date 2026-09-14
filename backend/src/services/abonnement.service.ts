@@ -2,7 +2,7 @@ import { prisma } from '../config/prisma';
 
 export class AbonnementService {
   async getAll() {
-    return prisma.abonnemment.findMany({
+    return prisma.abonnement.findMany({
       include: {
         membre: true
       },
@@ -13,7 +13,7 @@ export class AbonnementService {
   }
 
   async getById(id: number) {
-    return prisma.abonnemment.findUnique({
+    return prisma.abonnement.findUnique({
       where: { id },
       include: {
         membre: true
@@ -29,7 +29,7 @@ export class AbonnementService {
     statutAbonnement?: string;
     membreId: number;
   }) {
-    return prisma.abonnemment.create({
+    return prisma.abonnement.create({
       data: {
         type: data.type,
         date_debut: new Date(data.dateDebut),
@@ -52,7 +52,7 @@ export class AbonnementService {
     statutAbonnement?: string;
     membreId?: number;
   }) {
-    return prisma.abonnemment.update({
+    return prisma.abonnement.update({
       where: { id },
       data: {
         type: data.type,
@@ -73,7 +73,7 @@ export class AbonnementService {
   }
 
   async delete(id: number) {
-    return prisma.abonnemment.delete({
+    return prisma.abonnement.delete({
       where: { id }
     });
   }
