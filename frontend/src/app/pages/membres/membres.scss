@@ -444,3 +444,57 @@ tbody tr:last-child td {
     width: 100%;
   }
 }
+// ======================================================
+// MESSAGE SUCCÈS
+// ======================================================
+
+.success-message {
+  position: fixed;
+
+  top: 24px;
+  right: 24px;
+
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.10);
+
+  color: #1f2937;
+
+  font-size: 14px;
+
+  animation: successMessageIn 0.25s ease;
+}
+
+.success-message .material-icons {
+  font-size: 20px;
+
+  color: #1f2937;
+}
+
+@keyframes successMessageIn {
+
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}

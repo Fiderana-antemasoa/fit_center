@@ -88,12 +88,14 @@ export class Abonnements implements OnInit {
 
 
   // =========================================================
-  // POPUP DE SUCCÈS
+  // MESSAGE DE SUCCÈS
   // =========================================================
 
-  showSuccessModal = false;
+  showSuccessMessage = false;
 
   successMessage = '';
+
+  private successTimeout: ReturnType<typeof setTimeout> | null = null;
 
 
   // =========================================================
@@ -436,11 +438,9 @@ export class Abonnements implements OnInit {
             this.loadAbonnements();
 
 
-            this.successMessage =
-              `L'abonnement « ${data.type} » a été modifié avec succès.`;
-
-            this.showSuccessModal =
-              true;
+            this.showSuccess(
+              `L'abonnement « ${data.type} » a été modifié avec succès.`
+            );
 
           },
 
@@ -486,11 +486,9 @@ export class Abonnements implements OnInit {
           this.loadAbonnements();
 
 
-          this.successMessage =
-            `L'abonnement « ${data.type} » a été ajouté avec succès.`;
-
-          this.showSuccessModal =
-            true;
+          this.showSuccess(
+            `L'abonnement « ${data.type} » a été ajouté avec succès.`
+          );
 
         },
 
@@ -583,12 +581,9 @@ export class Abonnements implements OnInit {
           this.loadAbonnements();
 
 
-          this.successMessage =
-            `L'abonnement de « ${membreNom} » a été supprimé avec succès.`;
-
-
-          this.showSuccessModal =
-            true;
+          this.showSuccess(
+            `L'abonnement de « ${membreNom} » a été supprimé avec succès.`
+          );
 
         },
 
@@ -633,16 +628,45 @@ export class Abonnements implements OnInit {
 
 
   // =========================================================
-  // FERMER POPUP SUCCÈS
+  // AFFICHER MESSAGE DE SUCCÈS
+  // DISPARITION AUTOMATIQUE APRÈS 3 SECONDES
   // =========================================================
 
-  closeSuccessModal(): void {
-
-    this.showSuccessModal =
-      false;
+  showSuccess(message: string): void {
 
     this.successMessage =
-      '';
+      message;
+
+    this.showSuccessMessage =
+      true;
+
+
+    // Si un ancien timer existe,
+    // on l'annule.
+
+    if (this.successTimeout) {
+
+      clearTimeout(
+        this.successTimeout
+      );
+
+    }
+
+
+    // Nouveau timer de 3 secondes
+
+    this.successTimeout =
+      setTimeout(() => {
+
+        this.showSuccessMessage =
+          false;
+
+        this.successMessage =
+          '';
+
+        this.cdr.detectChanges();
+
+      }, 3000);
 
   }
 

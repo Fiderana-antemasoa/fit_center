@@ -726,20 +726,24 @@
   ></app-confirmation-modal>
 
 
+    <!-- ====================================================== -->
+  <!-- MESSAGE SUCCÈS -->
   <!-- ====================================================== -->
-  <!-- POPUP SUCCÈS -->
-  <!-- ====================================================== -->
 
-  <app-confirmation-modal
-    [visible]="showSuccessModal"
+  @if (showSuccessMessage) {
 
-    title="Opération réussie"
+    <div class="success-message">
 
-    [message]="successMessage"
+      <span class="material-icons">
+        check_circle
+      </span>
 
-    [success]="true"
+      <span>
+        {{ successMessage }}
+      </span>
 
-    (cancelled)="closeSuccessModal()"
-  ></app-confirmation-modal>
+    </div>
+
+  }
 
 </section>

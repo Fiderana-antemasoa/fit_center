@@ -51,12 +51,14 @@ export class Membres implements OnInit {
   membreToDelete: Membre | null = null;
 
   // ==============================
-  // Popup succès
+  // Message succès
   // ==============================
 
-  showSuccessModal = false;
+  showSuccessMessage = false;
 
   successMessage = '';
+
+  private successTimeout: ReturnType<typeof setTimeout> | null = null;
 
   // ==============================
   // Formulaire membre
@@ -292,10 +294,10 @@ export class Membres implements OnInit {
 
             this.loadMembres();
 
-            this.successMessage =
-              `Le membre « ${data.nom} » a été modifié avec succès.`;
+            this.showSuccess(
+              `Le membre « ${data.nom} » a été modifié avec succès.`
+            );
 
-            this.showSuccessModal = true;
           },
 
           error: (error) => {
@@ -330,10 +332,10 @@ export class Membres implements OnInit {
 
           this.loadMembres();
 
-          this.successMessage =
-            `Le membre « ${data.nom} » a été ajouté avec succès.`;
+          this.showSuccess(
+            `Le membre « ${data.nom} » a été ajouté avec succès.`
+          );
 
-          this.showSuccessModal = true;
         },
 
         error: (error) => {
@@ -400,10 +402,10 @@ export class Membres implements OnInit {
 
           this.loadMembres();
 
-          this.successMessage =
-            `Le membre « ${nom} » a été supprimé avec succès.`;
+          this.showSuccess(
+            `Le membre « ${nom} » a été supprimé avec succès.`
+          );
 
-          this.showSuccessModal = true;
         },
 
         error: (error) => {
@@ -438,13 +440,38 @@ export class Membres implements OnInit {
   }
 
   // ==============================
-  // Fermer popup succès
+  // Afficher message succès
+  // Disparaît après 3 secondes
   // ==============================
 
-  closeSuccessModal(): void {
+  showSuccess(message: string): void {
 
-    this.showSuccessModal = false;
+    this.successMessage = message;
 
-    this.successMessage = '';
+    this.showSuccessMessage = true;
+
+    // Si un ancien message est encore affiché,
+    // on annule son ancien timer.
+
+    if (this.successTimeout) {
+
+      clearTimeout(
+        this.successTimeout
+      );
+
+    }
+
+    // Nouveau timer de 3 secondes
+
+    this.successTimeout =
+      setTimeout(() => {
+
+        this.showSuccessMessage = false;
+
+        this.successMessage = '';
+
+        this.cdr.detectChanges();
+
+      }, 3000);
   }
 }
