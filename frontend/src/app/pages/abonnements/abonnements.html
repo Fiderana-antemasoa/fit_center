@@ -1,129 +1,326 @@
 <section class="page">
+
+  <!-- ====================================================== -->
+  <!-- HEADER -->
+  <!-- ====================================================== -->
+
   <div class="page-header">
+
     <div>
-      <p class="eyebrow">GESTION</p>
-      <h1>Abonnements</h1>
-      <p>Gérez les abonnements des membres de votre salle.</p>
+
+      <p class="eyebrow">
+        GESTION
+      </p>
+
+      <h1>
+        Abonnements
+      </h1>
+
+      <p>
+        Gérez les abonnements des membres de votre salle.
+      </p>
+
     </div>
 
-    <button class="primary-button" type="button" (click)="openForm()">
-      <span class="material-icons">add_card</span>
+
+    <button
+      class="primary-button"
+      type="button"
+      (click)="openForm()"
+    >
+
+      <span class="material-icons">
+        add_card
+      </span>
+
       Nouvel abonnement
+
     </button>
+
   </div>
 
+
+  <!-- ====================================================== -->
+  <!-- LISTE -->
+  <!-- ====================================================== -->
+
   <div class="content-card">
+
     <div class="table-header">
+
       <div>
-        <h2>Liste des abonnements</h2>
-        <span>{{ abonnements.length }} abonnement(s)</span>
+
+        <h2>
+          Liste des abonnements
+        </h2>
+
+        <span>
+          {{ abonnements.length }} abonnement(s)
+        </span>
+
       </div>
+
     </div>
 
+
+    <!-- ==================================================== -->
+    <!-- ERREUR -->
+    <!-- ==================================================== -->
+
     @if (errorMessage) {
+
       <div class="empty-state">
+
         <div class="empty-icon">
-          <span class="material-icons">error_outline</span>
+
+          <span class="material-icons">
+            error_outline
+          </span>
+
         </div>
 
-        <h2>Erreur</h2>
+        <h2>
+          Erreur
+        </h2>
 
-        <p>{{ errorMessage }}</p>
+        <p>
+          {{ errorMessage }}
+        </p>
 
         <button
           class="secondary-button"
           type="button"
           (click)="loadAbonnements()"
         >
-          <span class="material-icons">refresh</span>
+
+          <span class="material-icons">
+            refresh
+          </span>
+
           Réessayer
+
         </button>
+
       </div>
+
+
+    <!-- ==================================================== -->
+    <!-- LISTE DES ABONNEMENTS -->
+    <!-- ==================================================== -->
+
     } @else if (abonnements.length > 0) {
+
       <div class="table-container">
+
         <table>
+
           <thead>
+
             <tr>
+
               <th>ID</th>
-              <th>Membre</th>
-              <th>Type</th>
-              <th>Période</th>
-              <th>Prix</th>
-              <th>Statut</th>
-              <th>Actions</th>
+
+              <th>
+                Membre
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Période
+              </th>
+
+              <th>
+                Prix
+              </th>
+
+              <th>
+                Statut
+              </th>
+
+              <th>
+                Actions
+              </th>
+
             </tr>
+
           </thead>
 
+
           <tbody>
-            @for (abonnement of abonnements; track abonnement.id) {
+
+            @for (
+              abonnement of abonnements;
+              track abonnement.id
+            ) {
+
               <tr>
+
+                <!-- ID -->
+
                 <td class="id-cell">
+
                   #{{ abonnement.id }}
+
                 </td>
 
+
+                <!-- MEMBRE -->
+
                 <td>
+
                   <div class="member-name">
+
                     <div class="avatar">
-                      {{ getMembreNom(abonnement.membre_id).charAt(0) }}
+
+                      {{
+                        getMembreNom(
+                          abonnement.membre_id
+                        ).charAt(0)
+                      }}
+
                     </div>
 
                     <strong>
-                      {{ getMembreNom(abonnement.membre_id) }}
+
+                      {{
+                        getMembreNom(
+                          abonnement.membre_id
+                        )
+                      }}
+
                     </strong>
+
                   </div>
+
                 </td>
 
+
+                <!-- TYPE -->
+
                 <td>
+
                   <span class="type-badge">
+
                     {{ abonnement.type }}
+
                   </span>
+
                 </td>
+
+
+                <!-- PÉRIODE -->
 
                 <td>
+
                   <div class="period">
-                    <span>
-                      {{ abonnement.date_debut | date:'dd/MM/yyyy' }}
-                    </span>
-
-                    <span class="period-arrow">→</span>
 
                     <span>
-                      {{ abonnement.date_fin | date:'dd/MM/yyyy' }}
+
+                      {{
+                        abonnement.date_debut
+                        | date:'dd/MM/yyyy'
+                      }}
+
                     </span>
+
+                    <span class="period-arrow">
+                      →
+                    </span>
+
+                    <span>
+
+                      {{
+                        abonnement.date_fin
+                        | date:'dd/MM/yyyy'
+                      }}
+
+                    </span>
+
                   </div>
+
                 </td>
+
+
+                <!-- PRIX -->
 
                 <td class="price-cell">
-                  {{ abonnement.prix | number }} Ar
+
+                  {{
+                    abonnement.prix
+                    | number
+                  }}
+
+                  Ar
+
                 </td>
 
+
+                <!-- STATUT -->
+
                 <td>
+
                   <span
                     class="status"
-                    [class.active]="abonnement.statut_abonnement === 'ACTIF'"
-                    [class.expired]="abonnement.statut_abonnement === 'EXPIRE'"
-                    [class.suspended]="abonnement.statut_abonnement === 'SUSPENDU'"
+                    [class.active]="
+                      abonnement.statut_abonnement === 'ACTIF'
+                    "
+                    [class.expired]="
+                      abonnement.statut_abonnement === 'EXPIRE'
+                    "
+                    [class.suspended]="
+                      abonnement.statut_abonnement === 'SUSPENDU'
+                    "
                   >
-                    @if (abonnement.statut_abonnement === 'ACTIF') {
+
+                    @if (
+                      abonnement.statut_abonnement === 'ACTIF'
+                    ) {
+
                       Actif
-                    } @else if (abonnement.statut_abonnement === 'EXPIRE') {
+
+                    } @else if (
+                      abonnement.statut_abonnement === 'EXPIRE'
+                    ) {
+
                       Expiré
+
                     } @else {
+
                       Suspendu
+
                     }
+
                   </span>
+
                 </td>
 
+
+                <!-- ACTIONS -->
+
                 <td>
+
                   <div class="actions">
+
+                    <!-- MODIFIER -->
+
                     <button
                       class="icon-button"
                       type="button"
                       title="Modifier"
                       (click)="editAbonnement(abonnement)"
                     >
-                      <span class="material-icons">edit</span>
+
+                      <span class="material-icons">
+                        edit
+                      </span>
+
                     </button>
+
+
+                    <!-- SUPPRIMER -->
 
                     <button
                       class="icon-button delete"
@@ -131,97 +328,199 @@
                       title="Supprimer"
                       (click)="deleteAbonnement(abonnement.id)"
                     >
-                      <span class="material-icons">delete</span>
+
+                      <span class="material-icons">
+                        delete
+                      </span>
+
                     </button>
+
                   </div>
+
                 </td>
+
               </tr>
+
             }
+
           </tbody>
+
         </table>
+
       </div>
+
+
+    <!-- ==================================================== -->
+    <!-- AUCUN ABONNEMENT -->
+    <!-- ==================================================== -->
+
     } @else {
+
       <div class="empty-state">
+
         <div class="empty-icon">
-          <span class="material-icons">card_membership</span>
+
+          <span class="material-icons">
+            card_membership
+          </span>
+
         </div>
 
-        <h2>Aucun abonnement</h2>
+        <h2>
+          Aucun abonnement
+        </h2>
 
         <p>
           Les abonnements que vous créerez apparaîtront ici.
         </p>
+
       </div>
+
     }
+
   </div>
 
+
+  <!-- ====================================================== -->
+  <!-- FORMULAIRE -->
+  <!-- ====================================================== -->
+
   @if (showForm) {
-    <div class="modal-overlay" (click)="closeForm()">
-      <div class="modal" (click)="$event.stopPropagation()">
+
+    <div
+      class="modal-overlay"
+      (click)="closeForm()"
+    >
+
+      <div
+        class="modal"
+        (click)="$event.stopPropagation()"
+      >
+
+
+        <!-- HEADER FORMULAIRE -->
 
         <div class="form-header">
+
           <div>
+
             <p class="eyebrow">
-              {{ editingId ? 'MODIFICATION' : 'NOUVEAU' }}
+
+              {{
+                editingId
+                  ? 'MODIFICATION'
+                  : 'NOUVEAU'
+              }}
+
             </p>
 
+
             <h2>
-              {{ editingId ? 'Modifier l’abonnement' : 'Nouvel abonnement' }}
+
+              {{
+                editingId
+                  ? 'Modifier l’abonnement'
+                  : 'Nouvel abonnement'
+              }}
+
             </h2>
+
 
             <p>
               Renseignez les informations de l’abonnement.
             </p>
+
           </div>
+
 
           <button
             class="close-button"
             type="button"
             (click)="closeForm()"
           >
-            <span class="material-icons">close</span>
+
+            <span class="material-icons">
+              close
+            </span>
+
           </button>
+
         </div>
 
-        <form [formGroup]="abonnementForm" (ngSubmit)="submit()">
+
+        <!-- FORMULAIRE -->
+
+        <form
+          [formGroup]="abonnementForm"
+          (ngSubmit)="submit()"
+        >
 
           <div class="form-grid">
 
+
+            <!-- MEMBRE -->
+
             <div class="form-group">
-              <label for="membreId">Membre *</label>
+
+              <label for="membreId">
+                Membre *
+              </label>
 
               <select
                 id="membreId"
                 formControlName="membreId"
               >
+
                 <option [ngValue]="null">
                   Sélectionner un membre
                 </option>
 
-                @for (membre of membres; track membre.id) {
-                  <option [ngValue]="membre.id">
+
+                @for (
+                  membre of membres;
+                  track membre.id
+                ) {
+
+                  <option
+                    [ngValue]="membre.id"
+                  >
+
                     {{ membre.nom }}
+
                   </option>
+
                 }
+
               </select>
+
 
               @if (
                 abonnementForm.controls.membreId.touched &&
                 abonnementForm.controls.membreId.invalid
               ) {
+
                 <small>
                   Veuillez sélectionner un membre.
                 </small>
+
               }
+
             </div>
 
+
+            <!-- TYPE -->
+
             <div class="form-group">
-              <label for="type">Type d'abonnement *</label>
+
+              <label for="type">
+                Type d'abonnement *
+              </label>
 
               <select
                 id="type"
                 formControlName="type"
               >
+
                 <option value="">
                   Sélectionner un type
                 </option>
@@ -241,19 +540,28 @@
                 <option value="ANNUEL">
                   Annuel
                 </option>
+
               </select>
+
 
               @if (
                 abonnementForm.controls.type.touched &&
                 abonnementForm.controls.type.invalid
               ) {
+
                 <small>
                   Le type d'abonnement est obligatoire.
                 </small>
+
               }
+
             </div>
 
+
+            <!-- DATE DEBUT -->
+
             <div class="form-group">
+
               <label for="dateDebut">
                 Date de début *
               </label>
@@ -263,9 +571,14 @@
                 type="date"
                 formControlName="dateDebut"
               />
+
             </div>
 
+
+            <!-- DATE FIN -->
+
             <div class="form-group">
+
               <label for="dateFin">
                 Date de fin *
               </label>
@@ -275,14 +588,20 @@
                 type="date"
                 formControlName="dateFin"
               />
+
             </div>
 
+
+            <!-- PRIX -->
+
             <div class="form-group">
+
               <label for="prix">
                 Prix *
               </label>
 
               <div class="price-input">
+
                 <input
                   id="prix"
                   type="number"
@@ -291,11 +610,19 @@
                   placeholder="Ex : 50000"
                 />
 
-                <span>Ar</span>
+                <span>
+                  Ar
+                </span>
+
               </div>
+
             </div>
 
+
+            <!-- STATUT -->
+
             <div class="form-group">
+
               <label for="statutAbonnement">
                 Statut *
               </label>
@@ -304,6 +631,7 @@
                 id="statutAbonnement"
                 formControlName="statutAbonnement"
               >
+
                 <option value="ACTIF">
                   Actif
                 </option>
@@ -315,12 +643,18 @@
                 <option value="SUSPENDU">
                   Suspendu
                 </option>
+
               </select>
+
             </div>
 
           </div>
 
+
+          <!-- BOUTONS -->
+
           <div class="form-actions">
+
             <button
               class="secondary-button"
               type="button"
@@ -329,20 +663,83 @@
               Annuler
             </button>
 
+
             <button
               class="primary-button"
               type="submit"
             >
+
               <span class="material-icons">
-                {{ editingId ? 'edit' : 'save' }}
+
+                {{
+                  editingId
+                    ? 'edit'
+                    : 'save'
+                }}
+
               </span>
 
-              {{ editingId ? 'Modifier' : 'Enregistrer' }}
+
+              {{
+                editingId
+                  ? 'Modifier'
+                  : 'Enregistrer'
+              }}
+
             </button>
+
           </div>
 
         </form>
+
       </div>
+
     </div>
+
   }
+
+
+  <!-- ====================================================== -->
+  <!-- POPUP CONFIRMATION SUPPRESSION -->
+  <!-- ====================================================== -->
+
+  <app-confirmation-modal
+    [visible]="showDeleteModal"
+
+    title="Confirmer la suppression"
+
+    [message]="
+      abonnementToDelete
+        ? 'Voulez-vous vraiment supprimer l’abonnement de « ' +
+          getMembreNom(abonnementToDelete.membre_id) +
+          ' » ?'
+        : 'Voulez-vous vraiment supprimer cet abonnement ?'
+    "
+
+    confirmText="Supprimer"
+
+    cancelText="Annuler"
+
+    (confirmed)="confirmDelete()"
+
+    (cancelled)="cancelDelete()"
+  ></app-confirmation-modal>
+
+
+  <!-- ====================================================== -->
+  <!-- POPUP SUCCÈS -->
+  <!-- ====================================================== -->
+
+  <app-confirmation-modal
+    [visible]="showSuccessModal"
+
+    title="Opération réussie"
+
+    [message]="successMessage"
+
+    [success]="true"
+
+    (cancelled)="closeSuccessModal()"
+  ></app-confirmation-modal>
+
 </section>

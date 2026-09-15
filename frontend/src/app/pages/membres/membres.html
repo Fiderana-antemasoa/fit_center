@@ -1,48 +1,85 @@
 <section class="page">
+
   <div class="page-header">
+
     <div>
       <p class="eyebrow">GESTION</p>
+
       <h1>Membres</h1>
-      <p>Gérez les membres inscrits dans votre salle.</p>
+
+      <p>
+        Gérez les membres inscrits dans votre salle.
+      </p>
     </div>
 
-    <button class="primary-button" type="button" (click)="openForm()">
-      <span class="material-icons">person_add</span>
+    <button
+      class="primary-button"
+      type="button"
+      (click)="openForm()"
+    >
+      <span class="material-icons">
+        person_add
+      </span>
+
       Ajouter un membre
     </button>
+
   </div>
 
+
   <div class="content-card">
+
     <div class="table-header">
+
       <div>
         <h2>Liste des membres</h2>
-        <span>{{ membres.length }} membre(s)</span>
+
+        <span>
+          {{ membres.length }} membre(s)
+        </span>
       </div>
+
     </div>
 
+
     @if (errorMessage) {
+
       <div class="empty-state">
+
         <div class="empty-icon">
-          <span class="material-icons">error_outline</span>
+          <span class="material-icons">
+            error_outline
+          </span>
         </div>
 
         <h2>Erreur</h2>
 
-        <p>{{ errorMessage }}</p>
+        <p>
+          {{ errorMessage }}
+        </p>
 
         <button
           class="secondary-button"
           type="button"
           (click)="loadMembres()"
         >
-          <span class="material-icons">refresh</span>
+          <span class="material-icons">
+            refresh
+          </span>
+
           Réessayer
         </button>
+
       </div>
+
     } @else if (membres.length > 0) {
+
       <div class="table-container">
+
         <table>
+
           <thead>
+
             <tr>
               <th>ID</th>
               <th>Membre</th>
@@ -52,17 +89,25 @@
               <th>Statut</th>
               <th>Actions</th>
             </tr>
+
           </thead>
 
+
           <tbody>
+
             @for (membre of membres; track membre.id) {
+
               <tr>
+
                 <td class="id-cell">
                   #{{ membre.id }}
                 </td>
 
+
                 <td>
+
                   <div class="member-name">
+
                     <div class="avatar">
                       {{ membre.nom.charAt(0) }}
                     </div>
@@ -70,45 +115,61 @@
                     <strong>
                       {{ membre.nom }}
                     </strong>
+
                   </div>
+
                 </td>
+
 
                 <td>
                   {{ membre.telephone }}
                 </td>
 
+
                 <td>
                   {{ membre.mail }}
                 </td>
+
 
                 <td>
                   {{ membre.date_inscription | date:'dd/MM/yyyy' }}
                 </td>
 
+
                 <td>
+
                   <span
                     class="status"
                     [class.active]="membre.statut_membre.toUpperCase() === 'ACTIF'"
                     [class.inactive]="membre.statut_membre.toUpperCase() === 'INACTIF'"
                   >
+
                     {{
                       membre.statut_membre.toUpperCase() === 'ACTIF'
                         ? 'Actif'
                         : 'Inactif'
                     }}
+
                   </span>
+
                 </td>
 
+
                 <td>
+
                   <div class="actions">
+
                     <button
                       class="icon-button"
                       type="button"
                       title="Modifier"
                       (click)="editMembre(membre)"
                     >
-                      <span class="material-icons">edit</span>
+                      <span class="material-icons">
+                        edit
+                      </span>
                     </button>
+
 
                     <button
                       class="icon-button delete"
@@ -116,19 +177,33 @@
                       title="Supprimer"
                       (click)="deleteMembre(membre.id)"
                     >
-                      <span class="material-icons">delete</span>
+                      <span class="material-icons">
+                        delete
+                      </span>
                     </button>
+
                   </div>
+
                 </td>
+
               </tr>
+
             }
+
           </tbody>
+
         </table>
+
       </div>
+
     } @else {
+
       <div class="empty-state">
+
         <div class="empty-icon">
-          <span class="material-icons">groups</span>
+          <span class="material-icons">
+            groups
+          </span>
         </div>
 
         <h2>Aucun membre</h2>
@@ -136,21 +211,34 @@
         <p>
           Les membres que vous ajouterez apparaîtront ici.
         </p>
+
       </div>
+
     }
+
   </div>
 
+
+  <!-- ============================== -->
+  <!-- FORMULAIRE AJOUT / MODIFICATION -->
+  <!-- ============================== -->
+
   @if (showForm) {
+
     <div
       class="modal-overlay"
       (click)="closeForm()"
     >
+
       <div
         class="modal"
         (click)="$event.stopPropagation()"
       >
+
         <div class="form-header">
+
           <div>
+
             <p class="eyebrow">
               {{ editingId ? 'MODIFICATION' : 'NOUVEAU' }}
             </p>
@@ -162,24 +250,35 @@
             <p>
               Renseignez les informations du membre.
             </p>
+
           </div>
+
 
           <button
             class="close-button"
             type="button"
             (click)="closeForm()"
           >
-            <span class="material-icons">close</span>
+            <span class="material-icons">
+              close
+            </span>
           </button>
+
         </div>
+
 
         <form
           [formGroup]="membreForm"
           (ngSubmit)="submit()"
         >
+
           <div class="form-grid">
 
+
+            <!-- NOM -->
+
             <div class="form-group">
+
               <label for="nom">
                 Nom *
               </label>
@@ -195,13 +294,20 @@
                 membreForm.controls.nom.touched &&
                 membreForm.controls.nom.invalid
               ) {
+
                 <small>
                   Le nom est obligatoire.
                 </small>
+
               }
+
             </div>
 
+
+            <!-- TELEPHONE -->
+
             <div class="form-group">
+
               <label for="telephone">
                 Téléphone
               </label>
@@ -212,9 +318,14 @@
                 formControlName="telephone"
                 placeholder="Ex : 034 00 000 00"
               />
+
             </div>
 
+
+            <!-- EMAIL -->
+
             <div class="form-group">
+
               <label for="mail">
                 Email *
               </label>
@@ -230,13 +341,20 @@
                 membreForm.controls.mail.touched &&
                 membreForm.controls.mail.invalid
               ) {
+
                 <small>
                   Veuillez saisir une adresse email valide.
                 </small>
+
               }
+
             </div>
 
+
+            <!-- DATE -->
+
             <div class="form-group">
+
               <label for="dateInscription">
                 Date d'inscription *
               </label>
@@ -246,9 +364,14 @@
                 type="date"
                 formControlName="dateInscription"
               />
+
             </div>
 
+
+            <!-- STATUT -->
+
             <div class="form-group">
+
               <label for="statutMembre">
                 Statut *
               </label>
@@ -257,6 +380,7 @@
                 id="statutMembre"
                 formControlName="statutMembre"
               >
+
                 <option value="ACTIF">
                   Actif
                 </option>
@@ -264,12 +388,18 @@
                 <option value="INACTIF">
                   Inactif
                 </option>
+
               </select>
+
             </div>
 
           </div>
 
+
+          <!-- BOUTONS FORMULAIRE -->
+
           <div class="form-actions">
+
             <button
               class="secondary-button"
               type="button"
@@ -278,19 +408,56 @@
               Annuler
             </button>
 
+
             <button
               class="primary-button"
               type="submit"
             >
+
               <span class="material-icons">
                 {{ editingId ? 'edit' : 'save' }}
               </span>
 
               {{ editingId ? 'Modifier' : 'Enregistrer' }}
+
             </button>
+
           </div>
+
         </form>
+
       </div>
+
     </div>
+
   }
+
+
+  <!-- ============================== -->
+  <!-- POPUP CONFIRMATION SUPPRESSION -->
+  <!-- ============================== -->
+
+  <app-confirmation-modal
+    [visible]="showDeleteModal"
+    title="Confirmer la suppression"
+    [message]="membreToDelete ? 'Voulez-vous vraiment supprimer le membre « ' + membreToDelete.nom + ' » ?' : 'Voulez-vous vraiment supprimer ce membre ?'"
+    confirmText="Supprimer"
+    cancelText="Annuler"
+    (confirmed)="confirmDelete()"
+    (cancelled)="cancelDelete()"
+  ></app-confirmation-modal>
+
+
+  <!-- ============================== -->
+  <!-- POPUP SUCCÈS -->
+  <!-- ============================== -->
+
+  <app-confirmation-modal
+    [visible]="showSuccessModal"
+    title="Opération réussie"
+    [message]="successMessage"
+    [success]="true"
+    (cancelled)="closeSuccessModal()"
+  ></app-confirmation-modal>
+
 </section>
