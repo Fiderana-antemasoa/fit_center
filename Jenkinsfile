@@ -12,9 +12,9 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'npm ci'
-                    sh 'npx prisma generate'
-                    sh 'npm run build'
+                    bat 'npm ci'
+                    bat 'npx prisma generate'
+                    bat 'npm run build'
                 }
             }
         }
@@ -22,15 +22,15 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm ci'
-                    sh 'npm run build'
+                    bat 'npm ci'
+                    bat 'npm run build'
                 }
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh 'docker compose build'
+                echo 'Docker sera exécuté sur le serveur Linux de déploiement.'
             }
         }
     }
