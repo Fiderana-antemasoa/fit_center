@@ -9,10 +9,12 @@ import cors from 'cors';
 
 const app = express();
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
+
+const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
 
 app.use(cors({
-  origin: 'http://localhost:4200'
+  origin: frontendUrl
 }));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
@@ -28,5 +30,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Serveur FitCenter démarré sur http://localhost:${PORT}`);
+  console.log(`Serveur FitCenter démarré sur le port ${PORT}`);
 });
