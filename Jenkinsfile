@@ -13,7 +13,7 @@ pipeline {
             steps {
                 dir('backend') {
                     bat 'npm ci'
-                    bat 'npx prisma generate'
+                    bat 'set DATABASE_URL=postgresql://postgres:fitcenter_dev@localhost:5433/salle_sport&& npx prisma generate'
                     bat 'npm run build'
                 }
             }
