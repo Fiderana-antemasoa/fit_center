@@ -24,7 +24,7 @@ export interface MembreFormData {
 })
 export class MembreService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/membres';
+  private apiUrl = 'https://fit-center.onrender.com/api/membres';
 
   getAll(): Observable<Membre[]> {
     return this.http.get<Membre[]>(this.apiUrl);

@@ -32,7 +32,7 @@ export interface AbonnementFormData {
 })
 export class AbonnementService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/abonnements';
+  private apiUrl = 'https://fit-center.onrender.com/api/abonnements';
 
   getAll(): Observable<Abonnement[]> {
     return this.http.get<Abonnement[]>(this.apiUrl);
