@@ -28,11 +28,18 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                echo 'Docker sera exécuté sur le serveur Linux de déploiement.'
-            }
+        stage('Deploy to Render') {
+    steps {
+        withCredentials([
+            string(
+                credentialsId: 'render-deploy-hook',
+                variable: 'RENDER_DEPLOY_HOOK'
+            )
+        ]) {
+            bat 'curl -X POST "%RENDER_DEPLOY_HOOK%"'
         }
+    }
+}
     }
 
     post {
