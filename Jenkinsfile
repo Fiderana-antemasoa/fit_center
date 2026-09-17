@@ -38,6 +38,7 @@ pipeline {
         ]) {
             bat 'curl -X POST "%RENDER_DEPLOY_HOOK%"'
         }
+        echo 'CI/CD automatique FitCenter'
     }
 }
     }
@@ -51,4 +52,5 @@ pipeline {
             echo 'Le pipeline FitCenter a échoué.'
         }
     }
+    
 }
