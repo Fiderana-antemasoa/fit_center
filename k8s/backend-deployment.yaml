@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitcenter-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fitcenter-backend
+  template:
+    metadata:
+      labels:
+        app: fitcenter-backend
+    spec:
+      containers:
+        - name: backend
+          image: antemasoa/fitcenter-backend:latest
+          imagePullPolicy: IfNotPresent
+          command: ["node"]
+          args: ["dist/server.js"]
+          ports:
+            - containerPort: 3000

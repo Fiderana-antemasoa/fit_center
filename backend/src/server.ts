@@ -14,7 +14,23 @@ const PORT = Number(process.env.PORT) || 3000;
 const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
 
 app.use(cors({
-  origin: frontendUrl
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      frontendUrl,
+      'http://localhost:4200'
+    ];
+
+    // Autoriser les URLs GitHub Codespaces
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.app.github.dev')
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origine non autorisée par CORS'));
+    }
+  }
 }));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

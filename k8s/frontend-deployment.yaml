@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitcenter-frontend
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: fitcenter-frontend
+
+  template:
+    metadata:
+      labels:
+        app: fitcenter-frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: antemasoa/fitcenter-frontend:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 80
